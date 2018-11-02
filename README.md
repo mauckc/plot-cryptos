@@ -3,6 +3,12 @@ Plotting metrics for crypto data
 
 Sample Data used in this repo is from: https://www.cryptodatadownload.com/
 
+Add more files to the data folder and the script will automatically update the existing files
+
+Any new data you add from cryptodatadownload for Bittrex 1h should work.
+
+Gemini files are different and need extra parsing as they are one minute candles, but other exchanges may work with 1h plots
+
 ## Sample Output
 
 ![Crypto Plot Sample](./output/Bittrex_BTCUSD_1h_2018-04-30_23-00-00_to_2018-03-31_00-00-00.png)
