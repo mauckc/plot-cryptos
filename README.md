@@ -1,6 +1,7 @@
 # plot-cryptos
 Plotting metrics for crypto data
 
+Sample Data used in this repo is from: https://www.cryptodatadownload.com/
 
 ## Sample Output
 
