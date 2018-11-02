@@ -9,6 +9,20 @@ Any new data you add from cryptodatadownload for Bittrex 1h should work.
 
 Gemini files are different and need extra parsing as they are one minute candles, but other exchanges may work with 1h plots
 
+## Setting up
+
+The following settings are standard but can be edited to expand results
+
+```Python
+    # Assign parameters
+    price = df['Close']    # Choose which price data to plot
+    metric_time_delta = 30    # Choose the time averaged for Mean Average and Mean Standard Deviation
+    start_date_1 = '1/1/2018'    # Choose first start date time
+    start_date_2 = '2/1/2018'    # Choose second start date time
+    num_periods = 3    # Choose number of intervals to plot
+    time_freq = 'M'    # Choose time-series range of each individual plot
+    date_format ='%Y-%m-%d'    # Choose how the dates are formatted
+```
 ## Sample Output
 
 ![Crypto Plot Sample](./output/Bittrex_BTCUSD_1h_2018-04-30_23-00-00_to_2018-03-31_00-00-00.png)
@@ -44,7 +58,7 @@ for i, df in enumerate(l_dfs,0):
 ```
 
 ### Functions
-
+Useful Functions
 ```Python
 def read_bittrex(crypto_path):
     df_crypto = pd.read_csv(crypto_path, low_memory=False, header=1)
