@@ -1,7 +1,7 @@
 
 import pandas as pd
 import numpy as np
-from pandas_datareader import data as web
+#from pandas_datareader import data as web
 import matplotlib.pyplot as plt
 from datetime import datetime, date, time
 import os
