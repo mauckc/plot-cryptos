@@ -74,4 +74,43 @@ def crypto_plot(thisdf, crypto_market):
     plt.show()
 ```
 
+
+## Getting New Data
+
+### Set up paths of your data files
+
+These are the files that will be locally on your computer
+```Python
+required_data_path = './data/bittrex/hour/'
+requiredfiles = [f for f in os.listdir(required_data_path) if os.path.isfile(os.path.join(required_data_path, f)) if 'Bittrex' in f ]
+requiredfilespaths =  [ required_data_path + f for f in os.listdir(required_data_path) if os.path.isfile(os.path.join(required_data_path, f))]
+```
+
+
+These are the download urls produced by the existing local data files
+```Python
+# Configure the download paths
+download_path = "https://www.cryptodatadownload.com/cdd/"
+download_files_path =  [ download_path + f for f in requiredfiles]
+
+```
+
+
+### Open data stream
+Set to get new data every hour
+
+```Python
+while True:
+    for i, file in enumerate(requiredfiles):
+        output_path = requiredfilespaths[i]
+        get_download_path = download_files_path[i]
+        print(output_path)
+        print(get_download_path)
+        # Make shell call to download the file
+        call(["wget","--no-check-certificate", "-O", output_path, get_download_path])
+        time.sleep(3)
+    # Sleep for an hour
+    time.sleep(60*60)
+```
+
 ![Crypto Plot Sample](./output/Bittrex_XRPETH_1h_2018-03-31_23-00-00_to_2018-02-28_00-00-00.png)
