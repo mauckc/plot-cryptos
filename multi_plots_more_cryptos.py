@@ -3,9 +3,10 @@ import pandas as pd
 import numpy as np
 #from pandas_datareader import data as web
 import matplotlib.pyplot as plt
-from datetime import datetime, date, time
+from datetime import datetime, date, time, timedelta
 import os
 import string
+# import datetime
 
 def fix_bittrex_dates(df_crypto):
     #set an index by dates
@@ -38,6 +39,11 @@ def crypto_plot(thisdf, crypto_market, metric_time_delta):
     plt.savefig(''.join(('output/',crypto_market.replace('.csv',''),' ',str(pd.to_datetime(thisdf.Date.values[0])).replace(':','-'), ' to ',str(pd.to_datetime(thisdf.Date.values[-1])),'.png')).replace(':','-').replace(' ','_'))
     plt.show()
 
+output_data_path = './output/'
+if not os.path.exists(output_data_path):
+    print('[INFO]: creating output data directory')
+    os.makedirs(output_data_path)
+
 ## Check for data files
 required_data_path = './data/bittrex/hour/'
 requiredfiles = [f for f in os.listdir(required_data_path) if os.path.isfile(os.path.join(required_data_path, f)) if 'Bittrex' in f ]
@@ -52,11 +58,14 @@ required_dates = pd.date_range(required_start_date, required_end_date, freq='M')
 print('\nRequired Data Start Date: {}'.format(required_start_date))
 print('Required Data End Date: {}\n'.format(required_end_date))
 
+today = datetime.today().strftime('%d/%m/%Y')
+week_ago = (datetime.today() - timedelta(days=7)).strftime('%d/%m/%Y')
+
 for i, df in enumerate(l_dfs,0):
-    metric_time_delta = 30
-    start_date_1 = '1/1/2018'
-    start_date_2 = '2/1/2018'
-    num_periods = 3
+    metric_time_delta = 7
+    start_date_1 = week_ago#'1/1/2018'
+    start_date_2 = today#'2/1/2018'
+    num_periods = 1
     time_freq = 'M'
     date_format ='%Y-%m-%d'
 
